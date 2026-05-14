@@ -204,7 +204,7 @@
         }
 
         /* ===== HERO ===== */
-        .hero { height: 100vh; display: grid; place-items: center; padding-top: 80px; position: relative; overflow: hidden; }
+        .hero { min-height: 100vh; display: grid; place-items: center; padding: 120px 0 100px; position: relative; }
         .hero-inner { max-width: 860px; text-align: center; }
         .hero-badge {
             display: inline-flex; align-items: center; gap: 10px; padding: 6px 18px 6px 10px;
@@ -235,21 +235,20 @@
         }
         .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
         .hero-scroll {
-            position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
             display: flex; flex-direction: column; align-items: center; gap: 8px;
             color: var(--muted); font-size: 11px; font-family: var(--font-mono);
-            letter-spacing: 2px; animation: float 2.2s ease-in-out infinite;
+            letter-spacing: 2px; margin-top: 52px; animation: float 2.2s ease-in-out infinite;
         }
         @keyframes float {
-            0%,100% { transform: translateX(-50%) translateY(0); }
-            50%     { transform: translateX(-50%) translateY(8px); }
+            0%,100% { transform: translateY(0); }
+            50%     { transform: translateY(6px); }
         }
 
         /* ===== TICKER ===== */
         .ticker-wrap {
             padding: 20px 0; background: var(--bg-2);
             border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-            overflow: hidden; position: relative; z-index: 1;
+            overflow: hidden; position: relative; z-index: 2;
         }
         .ticker-wrap::before, .ticker-wrap::after {
             content: ''; position: absolute; top: 0; bottom: 0; width: 140px; z-index: 2; pointer-events: none;
@@ -838,13 +837,13 @@
                 </a>
                 <a href="#contact" class="btn btn-ghost">Get a Free Quote</a>
             </div>
-        </div>
-        <div class="hero-scroll">
-            <span>scroll</span>
-            <svg width="14" height="22" viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="1.5">
-                <rect x="1" y="1" width="12" height="20" rx="6"/>
-                <line x1="7" y1="6" x2="7" y2="10"/>
-            </svg>
+            <div class="hero-scroll">
+                <span>scroll</span>
+                <svg width="14" height="22" viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="1" y="1" width="12" height="20" rx="6"/>
+                    <line x1="7" y1="6" x2="7" y2="10"/>
+                </svg>
+            </div>
         </div>
     </section>
 
@@ -1106,7 +1105,7 @@
                     </div>
                 </div>
 
-                <!-- Project 3 — TX65 -->
+                <!-- Project 3 — TX65 Guns -->
                 <div class="project-card" data-fade data-delay="300">
                     <div class="browser-frame">
                         <div class="browser-bar">
@@ -1134,11 +1133,12 @@
                     <div class="project-info">
                         <div class="project-tech">
                             <span class="tech-pill">HTML/CSS/JS</span>
+                            <span class="tech-pill">E-Commerce</span>
                             <span class="tech-pill">Custom Design</span>
                             <span class="tech-pill">Performance</span>
                         </div>
-                        <h3>TX65</h3>
-                        <p>Fully custom business site with a distinct visual identity, clean hand-written code, and no page builder overhead.</p>
+                        <h3>TX65 Guns</h3>
+                        <p>Full custom e-commerce site for a Texas firearms retailer — bold design, fast load times, and a shop built around the brand's no-compromise identity.</p>
                         <a href="https://tx65-frontend-main.vercel.app/" target="_blank" rel="noopener" class="project-link">
                             View Live Site
                             <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
