@@ -193,17 +193,22 @@
 
         /* ===== TICKER ===== */
         .ticker-wrap {
-            padding: 26px 0; background: var(--bg-2);
+            padding: 20px 0; background: var(--bg-2);
             border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-            overflow: hidden;
+            overflow: hidden; position: relative; z-index: 1;
         }
-        .ticker-track { display: flex; white-space: nowrap; animation: ticker 28s linear infinite; }
+        .ticker-wrap::before, .ticker-wrap::after {
+            content: ''; position: absolute; top: 0; bottom: 0; width: 140px; z-index: 2; pointer-events: none;
+        }
+        .ticker-wrap::before { left: 0; background: linear-gradient(to right, var(--bg-2) 20%, transparent); }
+        .ticker-wrap::after  { right: 0; background: linear-gradient(to left,  var(--bg-2) 20%, transparent); }
+        .ticker-track { display: flex; white-space: nowrap; animation: ticker 32s linear infinite; }
         .ticker-track:hover { animation-play-state: paused; }
         .ticker-item {
-            display: inline-flex; align-items: center; gap: 12px; padding: 0 40px;
-            font-family: var(--font-mono); font-size: 12px; color: var(--muted); flex-shrink: 0;
+            display: inline-flex; align-items: center; gap: 10px; padding: 0 36px;
+            font-family: var(--font-mono); font-size: 11px; letter-spacing: .5px; color: var(--muted); flex-shrink: 0;
         }
-        .t-dot { width: 4px; height: 4px; background: var(--blue); border-radius: 50%; flex-shrink: 0; }
+        .t-dot { width: 3px; height: 3px; background: var(--blue); border-radius: 50%; flex-shrink: 0; opacity: .6; }
         @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
         /* ===== ABOUT ===== */
@@ -387,6 +392,28 @@
         .ml-row { display: flex; gap: 6px; }
         .ml-f { height: 24px; border-radius: 5px; flex: 1; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.09); }
         .ml-btn { height: 24px; width: 72px; background: #16A34A; border-radius: 5px; flex-shrink: 0; }
+
+        /* Pawsome Pomskies mockup */
+        .mock-pawsome { background: linear-gradient(155deg,#0C0A18,#160F2A); height: 100%; padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+        .mpw-nav { height: 11px; background: rgba(167,139,250,.12); border-radius: 4px; width: 70%; }
+        .mpw-hero { flex: 1; border-radius: 7px; background: linear-gradient(135deg,rgba(167,139,250,.16),rgba(99,102,241,.1)); display: flex; align-items: center; padding: 12px; gap: 10px; }
+        .mpw-txt { flex: 1; }
+        .mpw-h1 { height: 7px; background: rgba(255,255,255,.75); border-radius: 2px; width: 60%; margin-bottom: 5px; }
+        .mpw-sub { height: 4px; background: rgba(255,255,255,.28); border-radius: 2px; width: 45%; margin-bottom: 10px; }
+        .mpw-btn { height: 18px; width: 58px; background: #7C3AED; border-radius: 99px; }
+        .mpw-img { width: 48px; height: 48px; border-radius: 10px; background: rgba(167,139,250,.22); border: 1px solid rgba(167,139,250,.2); flex-shrink: 0; }
+        .mpw-cards { display: flex; gap: 6px; }
+        .mpw-card { flex: 1; height: 26px; border-radius: 6px; background: rgba(167,139,250,.07); border: 1px solid rgba(167,139,250,.13); }
+
+        /* TX65 mockup */
+        .mock-tx65 { background: linear-gradient(155deg,#060910,#0D1525); height: 100%; padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+        .mtx-nav { height: 11px; background: rgba(74,143,255,.1); border-radius: 4px; width: 72%; }
+        .mtx-hero { flex: 1; border-radius: 7px; background: linear-gradient(135deg,rgba(74,143,255,.14),rgba(52,211,153,.07)); padding: 12px; display: flex; flex-direction: column; justify-content: space-between; }
+        .mtx-h1 { height: 8px; background: rgba(255,255,255,.78); border-radius: 2px; width: 56%; margin-bottom: 5px; }
+        .mtx-sub { height: 4px; background: rgba(255,255,255,.28); border-radius: 2px; width: 38%; }
+        .mtx-btns { display: flex; gap: 7px; }
+        .mtx-btn1 { height: 20px; width: 62px; background: #4A8FFF; border-radius: 99px; }
+        .mtx-btn2 { height: 20px; width: 62px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 99px; }
 
         .project-info { padding: 22px; }
         .project-tech { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
@@ -941,7 +968,7 @@
             </div>
             <div class="portfolio-grid">
 
-                <!-- Project 1 -->
+                <!-- Project 1 — Pawsome Pomskies -->
                 <div class="project-card" data-fade data-delay="100">
                     <div class="browser-frame">
                         <div class="browser-bar">
@@ -951,84 +978,41 @@
                             <div class="browser-url"></div>
                         </div>
                         <div class="browser-content">
-                            <div class="mock-coffee">
-                                <div class="mc-nav"></div>
-                                <div class="mc-hero">
-                                    <div class="mc-hero-txt">
-                                        <div class="mc-h1"></div>
-                                        <div class="mc-sub"></div>
+                            <div class="mock-pawsome">
+                                <div class="mpw-nav"></div>
+                                <div class="mpw-hero">
+                                    <div class="mpw-txt">
+                                        <div class="mpw-h1"></div>
+                                        <div class="mpw-sub"></div>
+                                        <div class="mpw-btn"></div>
                                     </div>
-                                    <div class="mc-btn"></div>
+                                    <div class="mpw-img"></div>
                                 </div>
-                                <div class="mc-cards">
-                                    <div class="mc-card"></div>
-                                    <div class="mc-card"></div>
-                                    <div class="mc-card"></div>
+                                <div class="mpw-cards">
+                                    <div class="mpw-card"></div>
+                                    <div class="mpw-card"></div>
+                                    <div class="mpw-card"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="project-info">
                         <div class="project-tech">
-                            <span class="tech-pill">Next.js</span>
-                            <span class="tech-pill">Shopify</span>
-                            <span class="tech-pill">Tailwind</span>
+                            <span class="tech-pill">HTML/CSS/JS</span>
+                            <span class="tech-pill">Custom Forms</span>
+                            <span class="tech-pill">Local SEO</span>
                         </div>
-                        <h3>Denton Coffee Roasters</h3>
-                        <p>Full e-commerce store with coffee subscription service, loyalty program, and a brewing guide content hub.</p>
-                        <a href="#" class="project-link">
-                            View Case Study
+                        <h3>Pawsome Pomskies</h3>
+                        <p>Multi-page breeder website with puppy gallery, inquiry form, and trust-building content that converts serious buyers.</p>
+                        <a href="https://pawsomepomskies.com/" target="_blank" rel="noopener" class="project-link">
+                            View Live Site
                             <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                         </a>
                     </div>
                 </div>
 
-                <!-- Project 2 -->
+                <!-- Project 2 — Oakspire Lawnscape -->
                 <div class="project-card" data-fade data-delay="200">
-                    <div class="browser-frame">
-                        <div class="browser-bar">
-                            <div class="b-dot b-r"></div>
-                            <div class="b-dot b-y"></div>
-                            <div class="b-dot b-g"></div>
-                            <div class="browser-url"></div>
-                        </div>
-                        <div class="browser-content">
-                            <div class="mock-barber">
-                                <div class="mb-nav"></div>
-                                <div class="mb-split">
-                                    <div class="mb-left">
-                                        <div class="mb-lh"></div>
-                                        <div class="mb-ls"></div>
-                                        <div class="mb-ls2"></div>
-                                        <div class="mb-lbtn"></div>
-                                    </div>
-                                    <div class="mb-right">
-                                        <div class="mb-slot on"></div>
-                                        <div class="mb-slot"></div>
-                                        <div class="mb-slot on"></div>
-                                        <div class="mb-slot"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <div class="project-tech">
-                            <span class="tech-pill">React</span>
-                            <span class="tech-pill">Calendly API</span>
-                            <span class="tech-pill">Stripe</span>
-                        </div>
-                        <h3>Main St. Barber Shop</h3>
-                        <p>Booking-first website with online scheduling, staff profiles, and service menu with real-time availability.</p>
-                        <a href="#" class="project-link">
-                            View Case Study
-                            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card" data-fade data-delay="300">
                     <div class="browser-frame">
                         <div class="browser-bar">
                             <div class="b-dot b-r"></div>
@@ -1056,13 +1040,53 @@
                     <div class="project-info">
                         <div class="project-tech">
                             <span class="tech-pill">HTML/CSS/JS</span>
-                            <span class="tech-pill">Formspree</span>
-                            <span class="tech-pill">Google Ads</span>
+                            <span class="tech-pill">Web3Forms</span>
+                            <span class="tech-pill">SEO</span>
                         </div>
-                        <h3>Texas Landscaping Co.</h3>
-                        <p>High-converting landing page with a quote request funnel, before/after gallery, and Google Ads tracking.</p>
-                        <a href="#" class="project-link">
-                            View Case Study
+                        <h3>Oakspire Lawnscape</h3>
+                        <p>Fast single-page lawn care site built around one goal — getting visitors to request a quote. 99 PageSpeed on mobile.</p>
+                        <a href="https://oakspire-lawnscape.vercel.app/" target="_blank" rel="noopener" class="project-link">
+                            View Live Site
+                            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3 — TX65 -->
+                <div class="project-card" data-fade data-delay="300">
+                    <div class="browser-frame">
+                        <div class="browser-bar">
+                            <div class="b-dot b-r"></div>
+                            <div class="b-dot b-y"></div>
+                            <div class="b-dot b-g"></div>
+                            <div class="browser-url"></div>
+                        </div>
+                        <div class="browser-content">
+                            <div class="mock-tx65">
+                                <div class="mtx-nav"></div>
+                                <div class="mtx-hero">
+                                    <div>
+                                        <div class="mtx-h1"></div>
+                                        <div class="mtx-sub"></div>
+                                    </div>
+                                    <div class="mtx-btns">
+                                        <div class="mtx-btn1"></div>
+                                        <div class="mtx-btn2"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <div class="project-tech">
+                            <span class="tech-pill">HTML/CSS/JS</span>
+                            <span class="tech-pill">Custom Design</span>
+                            <span class="tech-pill">Performance</span>
+                        </div>
+                        <h3>TX65</h3>
+                        <p>Fully custom business site with a distinct visual identity, clean hand-written code, and no page builder overhead.</p>
+                        <a href="https://tx65-frontend-main.vercel.app/" target="_blank" rel="noopener" class="project-link">
+                            View Live Site
                             <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                         </a>
                     </div>
