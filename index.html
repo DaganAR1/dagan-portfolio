@@ -485,6 +485,64 @@
         .project-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--blue); transition: gap .3s; }
         .project-link:hover { gap: 10px; }
 
+        /* ===== DASHBOARD SECTION ===== */
+        .dash-demo { background:var(--bg); border:1px solid var(--border); border-radius:var(--radius-lg); overflow:hidden; margin:52px 0 40px; box-shadow:0 40px 80px rgba(0,0,0,.4); }
+        .dash-header { display:flex; align-items:center; justify-content:space-between; padding:16px 22px; border-bottom:1px solid var(--border); background:rgba(255,255,255,.02); }
+        .dash-title { display:flex; align-items:center; gap:10px; font-family:var(--font-display); font-weight:700; font-size:14px; }
+        .dash-live-dot { width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 6px rgba(52,211,153,.6); animation:pulse 2s infinite; }
+        .dash-tabs { display:flex; gap:3px; background:rgba(255,255,255,.04); padding:3px; border-radius:8px; }
+        .dash-tab { padding:5px 13px; border:none; border-radius:6px; background:none; color:var(--muted); font-size:11px; font-family:var(--font-mono); cursor:pointer; transition:all .2s; }
+        .dash-tab.active { background:var(--blue); color:#fff; }
+        .dash-kpis { display:grid; grid-template-columns:repeat(4,1fr); border-bottom:1px solid var(--border); }
+        .kpi-card { padding:18px 20px; display:flex; align-items:flex-start; gap:12px; border-right:1px solid var(--border); }
+        .kpi-card:last-child { border-right:none; }
+        .kpi-icon { width:34px; height:34px; border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; flex-shrink:0; }
+        .kpi-icon.krev { background:rgba(52,211,153,.12); color:var(--green); }
+        .kpi-icon.kusr { background:rgba(74,143,255,.12); color:var(--blue); }
+        .kpi-icon.kord { background:rgba(251,191,36,.12); color:#FBBF24; }
+        .kpi-icon.kcnv { background:rgba(167,139,250,.12); color:#A78BFA; }
+        .kpi-label { font-size:11px; color:var(--muted); font-family:var(--font-mono); letter-spacing:.5px; margin-bottom:3px; }
+        .kpi-value { font-family:var(--font-display); font-size:21px; font-weight:800; line-height:1; margin-bottom:5px; }
+        .kpi-change { font-size:11px; font-family:var(--font-mono); }
+        .kpi-up { color:var(--green); } .kpi-down { color:#F87171; }
+        .dash-main { display:grid; grid-template-columns:1fr 260px; border-bottom:1px solid var(--border); }
+        .dash-chart-wrap { padding:18px 20px; border-right:1px solid var(--border); }
+        .dash-chart-hdr { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:12px; }
+        .dash-chart-title { font-weight:600; font-size:13px; }
+        .dash-chart-sub { font-size:11px; color:var(--muted); font-family:var(--font-mono); }
+        .dash-svg { width:100%; height:150px; display:block; overflow:visible; }
+        .dash-activity { padding:18px 20px; }
+        .dash-act-title { font-weight:600; font-size:13px; margin-bottom:12px; }
+        .da-item { display:flex; align-items:center; gap:9px; padding:7px 10px; border-radius:8px; background:rgba(255,255,255,.02); border:1px solid var(--border); margin-bottom:7px; }
+        .da-item:last-child { margin-bottom:0; }
+        .da-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+        .da-info { flex:1; min-width:0; }
+        .da-name { font-size:12px; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .da-time { font-size:10px; color:var(--muted); font-family:var(--font-mono); }
+        .da-amt { font-size:11px; font-family:var(--font-mono); font-weight:600; white-space:nowrap; }
+        .da-amt.pos { color:var(--green); } .da-amt.neu { color:var(--blue); } .da-amt.warn { color:#FBBF24; }
+        .dash-bottom { display:grid; grid-template-columns:1fr 1fr; }
+        .dash-bars-wrap { padding:18px 20px; border-right:1px solid var(--border); }
+        .dash-bars-title { font-weight:600; font-size:13px; margin-bottom:14px; }
+        .bar-row { margin-bottom:11px; }
+        .bar-label { display:flex; justify-content:space-between; font-size:11px; color:var(--muted); font-family:var(--font-mono); margin-bottom:5px; }
+        .bar-track { height:5px; background:rgba(255,255,255,.05); border-radius:99px; overflow:hidden; }
+        .bar-fill { height:100%; border-radius:99px; width:0; transition:width 1.4s var(--ease); }
+        .dash-pages { padding:18px 20px; }
+        .dash-pages-title { font-weight:600; font-size:13px; margin-bottom:12px; }
+        .tp-row { display:flex; align-items:center; justify-content:space-between; padding:7px 0; border-bottom:1px solid var(--border); }
+        .tp-row:last-child { border-bottom:none; }
+        .tp-page { font-size:11.5px; font-family:var(--font-mono); color:var(--blue); }
+        .tp-views { font-size:11px; color:var(--muted); font-family:var(--font-mono); }
+        .dash-features { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+        .dash-feat { display:flex; align-items:flex-start; gap:12px; padding:18px; background:var(--bg-3); border:1px solid var(--border); border-radius:var(--radius); transition:border-color .3s; }
+        .dash-feat:hover { border-color:var(--border-hover); }
+        .df-icon { font-size:18px; flex-shrink:0; margin-top:2px; }
+        .dash-feat strong { display:block; font-size:13.5px; font-weight:600; margin-bottom:3px; }
+        .dash-feat span { font-size:12.5px; color:var(--muted); line-height:1.5; }
+        @media(max-width:900px) { .dash-kpis{grid-template-columns:repeat(2,1fr)} .dash-main{grid-template-columns:1fr} .dash-bottom{grid-template-columns:1fr} .dash-features{grid-template-columns:repeat(2,1fr)} .dash-chart-wrap{border-right:none;border-bottom:1px solid var(--border)} .dash-bars-wrap{border-right:none;border-bottom:1px solid var(--border)} }
+        @media(max-width:600px) { .dash-features{grid-template-columns:1fr} .kpi-card{border-right:none;border-bottom:1px solid var(--border)} .kpi-card:last-child{border-bottom:none} }
+
         /* ===== TESTIMONIALS ===== */
         .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
         @media (max-width: 900px) { .testi-grid { grid-template-columns: 1fr; } }
@@ -1116,6 +1174,141 @@
         </div>
     </section>
 
+    <!-- DASHBOARDS -->
+    <section id="dashboards">
+        <div class="container">
+            <div class="section-header center" data-fade>
+                <span class="section-label">Custom Dashboards</span>
+                <h2>Know your numbers.<br>Own your data.</h2>
+                <p class="section-sub">Beyond websites — I build custom admin panels so you can track revenue, leads, inventory, and performance in one place. Built around how your business actually works, not a generic template.</p>
+            </div>
+
+            <div class="dash-demo" data-fade>
+                <!-- Header -->
+                <div class="dash-header">
+                    <div class="dash-title">
+                        <div class="dash-live-dot"></div>
+                        Business Overview
+                    </div>
+                    <div class="dash-tabs">
+                        <button class="dash-tab active" data-period="7">7D</button>
+                        <button class="dash-tab" data-period="30">30D</button>
+                        <button class="dash-tab" data-period="90">90D</button>
+                    </div>
+                </div>
+
+                <!-- KPIs -->
+                <div class="dash-kpis">
+                    <div class="kpi-card">
+                        <div class="kpi-icon krev">$</div>
+                        <div>
+                            <div class="kpi-label">REVENUE</div>
+                            <div class="kpi-value" id="kpi-rev">$0</div>
+                            <div class="kpi-change kpi-up">↑ 12.4% vs last period</div>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon kusr">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                        </div>
+                        <div>
+                            <div class="kpi-label">VISITORS</div>
+                            <div class="kpi-value" id="kpi-vis">0</div>
+                            <div class="kpi-change kpi-up">↑ 8.2% vs last period</div>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon kord">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                        </div>
+                        <div>
+                            <div class="kpi-label">ORDERS</div>
+                            <div class="kpi-value" id="kpi-ord">0</div>
+                            <div class="kpi-change kpi-down">↓ 2.1% vs last period</div>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon kcnv">%</div>
+                        <div>
+                            <div class="kpi-label">CONVERSION</div>
+                            <div class="kpi-value" id="kpi-cnv">0%</div>
+                            <div class="kpi-change kpi-up">↑ 0.8% vs last period</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chart + Activity -->
+                <div class="dash-main">
+                    <div class="dash-chart-wrap">
+                        <div class="dash-chart-hdr">
+                            <span class="dash-chart-title">Revenue Over Time</span>
+                            <span class="dash-chart-sub" id="dashChartSub">Last 30 days</span>
+                        </div>
+                        <svg class="dash-svg" id="dashChartSvg" viewBox="0 0 600 150" preserveAspectRatio="none">
+                            <defs>
+                                <linearGradient id="revGrad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#4A8FFF" stop-opacity=".25"/>
+                                    <stop offset="100%" stop-color="#4A8FFF" stop-opacity="0"/>
+                                </linearGradient>
+                            </defs>
+                            <path id="dashFill" fill="url(#revGrad)" opacity="0"/>
+                            <path id="dashLine" fill="none" stroke="#4A8FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="dash-activity">
+                        <div class="dash-act-title">Live Activity</div>
+                        <div id="dashFeed">
+                            <div class="da-item"><div class="da-dot" style="background:#34D399"></div><div class="da-info"><div class="da-name">New order #4821</div><div class="da-time">just now</div></div><div class="da-amt pos">+$340</div></div>
+                            <div class="da-item"><div class="da-dot" style="background:#4A8FFF"></div><div class="da-info"><div class="da-name">New lead via contact form</div><div class="da-time">3 min ago</div></div><div class="da-amt neu">Lead</div></div>
+                            <div class="da-item"><div class="da-dot" style="background:#34D399"></div><div class="da-info"><div class="da-name">New order #4820</div><div class="da-time">18 min ago</div></div><div class="da-amt pos">+$210</div></div>
+                            <div class="da-item"><div class="da-dot" style="background:#FBBF24"></div><div class="da-info"><div class="da-name">Low stock: SKU-0042</div><div class="da-time">1 hr ago</div></div><div class="da-amt warn">Alert</div></div>
+                            <div class="da-item"><div class="da-dot" style="background:#34D399"></div><div class="da-info"><div class="da-name">New order #4819</div><div class="da-time">2 hr ago</div></div><div class="da-amt pos">+$895</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bars + Top Pages -->
+                <div class="dash-bottom">
+                    <div class="dash-bars-wrap">
+                        <div class="dash-bars-title">Traffic by Source</div>
+                        <div class="bar-row"><div class="bar-label"><span>Organic Search</span><span>46%</span></div><div class="bar-track"><div class="bar-fill" style="background:#4A8FFF" data-width="46"></div></div></div>
+                        <div class="bar-row"><div class="bar-label"><span>Direct</span><span>27%</span></div><div class="bar-track"><div class="bar-fill" style="background:#34D399" data-width="27"></div></div></div>
+                        <div class="bar-row"><div class="bar-label"><span>Social Media</span><span>19%</span></div><div class="bar-track"><div class="bar-fill" style="background:#A78BFA" data-width="19"></div></div></div>
+                        <div class="bar-row"><div class="bar-label"><span>Referral</span><span>8%</span></div><div class="bar-track"><div class="bar-fill" style="background:#FBBF24" data-width="8"></div></div></div>
+                    </div>
+                    <div class="dash-pages">
+                        <div class="dash-pages-title">Top Pages</div>
+                        <div class="tp-row"><span class="tp-page">/</span><span class="tp-views">3,241 views</span></div>
+                        <div class="tp-row"><span class="tp-page">/shop</span><span class="tp-views">2,108 views</span></div>
+                        <div class="tp-row"><span class="tp-page">/contact</span><span class="tp-views">984 views</span></div>
+                        <div class="tp-row"><span class="tp-page">/about</span><span class="tp-views">612 views</span></div>
+                        <div class="tp-row"><span class="tp-page">/blog</span><span class="tp-views">408 views</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature pills -->
+            <div class="dash-features" data-fade>
+                <div class="dash-feat">
+                    <div class="df-icon">📊</div>
+                    <div><strong>Real-time data</strong><span>Live updates from your store, forms, or any API</span></div>
+                </div>
+                <div class="dash-feat">
+                    <div class="df-icon">🔒</div>
+                    <div><strong>Password protected</strong><span>Only you and your team can access it</span></div>
+                </div>
+                <div class="dash-feat">
+                    <div class="df-icon">📱</div>
+                    <div><strong>Mobile ready</strong><span>Check your numbers from anywhere, any device</span></div>
+                </div>
+                <div class="dash-feat">
+                    <div class="df-icon">🎯</div>
+                    <div><strong>Built for your business</strong><span>Track exactly what matters — nothing generic</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- TESTIMONIALS -->
     <section id="testimonials">
         <div class="container">
@@ -1316,13 +1509,13 @@
                 <h2>Let's build something real.</h2>
                 <p>Fill out the form and I'll respond within 24 hours. Or reach out directly — I'm a real person, not a ticketing system.</p>
                 <div class="contact-ways">
-                    <a href="mailto:hello@dagan.dev" class="contact-way">
+                    <a href="mailto:daganwebservices@gmail.com" class="contact-way">
                         <div class="cw-icon">
                             <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                         </div>
                         <div>
                             <div class="cw-label">Email</div>
-                            <div class="cw-val">hello@dagan.dev</div>
+                            <div class="cw-val">daganwebservices@gmail.com</div>
                         </div>
                     </a>
                     <a href="https://www.instagram.com/daganwebservices/" target="_blank" rel="noopener" class="contact-way">
@@ -1797,6 +1990,136 @@
     }
     window.addEventListener('resize', scaleExDemos);
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeExamples(); });
+
+    /* ===== DASHBOARD ===== */
+    (function() {
+        const datasets = {
+            7:  [3200,4100,3800,5200,4700,6100,5600],
+            30: [4200,3800,5100,4600,6200,5800,7100,6400,5900,7800,8200,7500,6800,8900,9200,8400,7600,9800,10200,9500,8800,11000,10500,9800,11500,12000,11200,10800,12500,13000],
+            90: [3100,3400,3200,3800,4100,4400,4200,4800,5100,5400,5200,5800,6100,6400,6200,6800,7100,7400,7200,7800,8100,8400,8200,8800,9100,9400,9200,9800,10100,10400,10200,10800,11100,11400,11200,11800,12100,12400,12200,12800,13100,13400,13200,13800,14100,14400,14200,14800,15100,15400,15200,15800,16100,16400,16200,16800,17100,17400,17200,17800,18100,18400,18200,18800,19100,19400,19200,19800,20100,20400,20200,20800,21100,21400,21200,21800,22100,22400,22200,22800,23100,23400,23200,23800,24100,24400,24200,24800,25100,25400]
+        };
+        const kpiData = {
+            7:  { rev:'$12,480', vis:'847',  ord:'94',  cnv:'4.7%' },
+            30: { rev:'$48,320', vis:'2,847', ord:'391', cnv:'4.7%' },
+            90: { rev:'$142,900',vis:'8,241', ord:'1,142',cnv:'5.1%' }
+        };
+        const subLabel = { 7:'Last 7 days', 30:'Last 30 days', 90:'Last 90 days' };
+
+        let currentPeriod = 30;
+        let chartAnimated = false;
+
+        function smoothPath(pts) {
+            if (pts.length < 2) return '';
+            let d = `M ${pts[0][0]} ${pts[0][1]}`;
+            for (let i = 1; i < pts.length; i++) {
+                const [x0,y0] = pts[i-1], [x1,y1] = pts[i];
+                const mx = (x0+x1)/2;
+                d += ` C ${mx} ${y0} ${mx} ${y1} ${x1} ${y1}`;
+            }
+            return d;
+        }
+
+        function drawChart(period, animate) {
+            const data = datasets[period];
+            const W=600, H=150, pad=8;
+            const min = Math.min(...data), max = Math.max(...data);
+            const pts = data.map((v,i) => [
+                pad + i*(W-pad*2)/(data.length-1),
+                H - pad - ((v-min)/(max-min||1))*(H-pad*2)
+            ]);
+            const linePath = smoothPath(pts);
+            const fillPath = linePath + ` L ${pts[pts.length-1][0]} ${H} L ${pad} ${H} Z`;
+
+            const lineEl = document.getElementById('dashLine');
+            const fillEl = document.getElementById('dashFill');
+            lineEl.setAttribute('d', linePath);
+            fillEl.setAttribute('d', fillPath);
+
+            if (animate) {
+                const len = lineEl.getTotalLength();
+                lineEl.style.transition = 'none';
+                lineEl.style.strokeDasharray = len;
+                lineEl.style.strokeDashoffset = len;
+                fillEl.style.transition = 'none';
+                fillEl.style.opacity = '0';
+                requestAnimationFrame(() => {
+                    lineEl.style.transition = 'stroke-dashoffset 1.8s cubic-bezier(0.16,1,0.3,1)';
+                    lineEl.style.strokeDashoffset = '0';
+                    fillEl.style.transition = 'opacity 1s ease .4s';
+                    fillEl.style.opacity = '1';
+                });
+            } else {
+                lineEl.style.strokeDasharray = '';
+                lineEl.style.strokeDashoffset = '';
+                fillEl.style.opacity = '1';
+            }
+            document.getElementById('dashChartSub').textContent = subLabel[period];
+        }
+
+        function setKpis(period) {
+            const d = kpiData[period];
+            document.getElementById('kpi-rev').textContent = d.rev;
+            document.getElementById('kpi-vis').textContent = d.vis;
+            document.getElementById('kpi-ord').textContent = d.ord;
+            document.getElementById('kpi-cnv').textContent = d.cnv;
+        }
+
+        function animateBars() {
+            document.querySelectorAll('.bar-fill').forEach(el => {
+                el.style.width = el.dataset.width + '%';
+            });
+        }
+
+        // Tab switching
+        document.querySelectorAll('.dash-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.dash-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                currentPeriod = +tab.dataset.period;
+                setKpis(currentPeriod);
+                drawChart(currentPeriod, true);
+            });
+        });
+
+        // Trigger on scroll into view
+        const dashObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting && !chartAnimated) {
+                    chartAnimated = true;
+                    drawChart(currentPeriod, true);
+                    setKpis(currentPeriod);
+                    animateBars();
+                    dashObs.disconnect();
+                }
+            });
+        }, { threshold: .2 });
+        const dashDemo = document.querySelector('.dash-demo');
+        if (dashDemo) dashObs.observe(dashDemo);
+
+        // Simulate live activity feed
+        const events = [
+            { col:'#34D399', name:'New order #4822', amt:'+$128', cls:'pos' },
+            { col:'#4A8FFF', name:'New lead via form', amt:'Lead', cls:'neu' },
+            { col:'#34D399', name:'New order #4823', amt:'+$540', cls:'pos' },
+            { col:'#FBBF24', name:'Abandoned cart', amt:'Warn', cls:'warn' },
+            { col:'#A78BFA', name:'Newsletter signup', amt:'Sub', cls:'neu' },
+        ];
+        let ei = 0;
+        setInterval(() => {
+            const feed = document.getElementById('dashFeed');
+            if (!feed || !document.getElementById('dashboards').getBoundingClientRect().bottom > 0) return;
+            const ev = events[ei++ % events.length];
+            const item = document.createElement('div');
+            item.className = 'da-item';
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(-8px)';
+            item.style.transition = 'opacity .4s, transform .4s';
+            item.innerHTML = `<div class="da-dot" style="background:${ev.col}"></div><div class="da-info"><div class="da-name">${ev.name}</div><div class="da-time">just now</div></div><div class="da-amt ${ev.cls}">${ev.amt}</div>`;
+            feed.prepend(item);
+            requestAnimationFrame(() => { item.style.opacity='1'; item.style.transform=''; });
+            if (feed.children.length > 5) feed.removeChild(feed.lastElementChild);
+        }, 5000);
+    })();
 
     /* ===== HERO CURSOR GLOW ===== */
     const heroEl   = document.querySelector('.hero');
