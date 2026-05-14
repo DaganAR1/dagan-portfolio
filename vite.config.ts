@@ -21,6 +21,7 @@ export default defineConfig({
         blogCost:    resolve(__dirname, 'blog/how-much-does-a-website-cost-denton-tx.html'),
         blogSigns:   resolve(__dirname, 'blog/5-signs-your-website-is-hurting-your-business.html'),
         blogCustom:  resolve(__dirname, 'blog/custom-website-vs-template-denton-small-business.html'),
+        blogSeo:     resolve(__dirname, 'blog/local-seo-guide-denton-tx-small-business.html'),
       },
     },
   },
