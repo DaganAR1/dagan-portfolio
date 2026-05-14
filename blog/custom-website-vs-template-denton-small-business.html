@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom Website vs. Wix or Squarespace — Which Is Right for Your Business? | dagan.dev</title>
+    <meta name="description" content="Wix and Squarespace are fine for some businesses. But once your website needs to actually grow your Denton business, the difference becomes very real." />
+    <link rel="canonical" href="https://dagan.dev/blog/custom-website-vs-template-denton-small-business.html" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Custom Website vs. Wix or Squarespace — Which Is Right for Your Business?","author":{"@type":"Person","name":"Dagan","url":"https://dagan.dev"},"datePublished":"2025-04-05","url":"https://dagan.dev/blog/custom-website-vs-template-denton-small-business.html"}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg:#070A10; --bg-2:#0C1018; --bg-3:#111622;
+            --blue:#4A8FFF; --green:#34D399;
+            --text:#EDF2F7; --muted:#718096;
+            --border:rgba(255,255,255,0.07); --border-hover:rgba(74,143,255,0.4);
+            --radius:14px; --radius-lg:22px;
+            --font-display:'Syne',sans-serif;
+            --font-body:'Inter',sans-serif;
+            --font-mono:'JetBrains Mono',monospace;
+            --ease:cubic-bezier(0.16,1,0.3,1);
+        }
+        *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+        html { -webkit-font-smoothing:antialiased; }
+        body { background:var(--bg); color:var(--text); font-family:var(--font-body); line-height:1.6; overflow-x:hidden; }
+        img { display:block; max-width:100%; }
+        a { text-decoration:none; color:inherit; }
+        .container { max-width:1160px; margin:0 auto; padding:0 24px; }
+        nav { position:fixed; top:0; left:0; right:0; z-index:200; padding:18px 0; transition:background .3s,padding .3s; }
+        nav.scrolled { background:rgba(7,10,16,.95); backdrop-filter:blur(16px); border-bottom:1px solid var(--border); padding:12px 0; }
+        .nav-inner { display:flex; align-items:center; justify-content:space-between; gap:24px; }
+        .nav-logo { font-family:var(--font-display); font-weight:800; font-size:18px; letter-spacing:-.5px; }
+        .nav-logo .dot { color:var(--blue); }
+        .nav-links { display:flex; list-style:none; gap:32px; }
+        .nav-links a { font-size:14px; font-weight:500; color:var(--muted); transition:color .2s; }
+        .nav-links a:hover, .nav-links a.active { color:var(--text); }
+        .btn { display:inline-flex; align-items:center; gap:8px; padding:11px 26px; border-radius:99px; font-weight:600; font-size:14px; border:none; cursor:pointer; font-family:var(--font-body); transition:transform .2s var(--ease),box-shadow .2s var(--ease); }
+        .btn-primary { background:var(--blue); color:#fff; }
+        .btn-primary:hover { transform:translateY(-2px); box-shadow:0 12px 30px rgba(74,143,255,.35); }
+        .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:6px; background:none; border:none; }
+        .hamburger span { display:block; width:22px; height:2px; background:var(--text); border-radius:2px; transition:all .3s var(--ease); }
+        .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+        .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+        .mobile-menu { position:fixed; inset:0; background:var(--bg); z-index:199; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:24px; transform:translateY(-100%); transition:transform .4s var(--ease); pointer-events:none; }
+        .mobile-menu.open { transform:translateY(0); pointer-events:all; }
+        .mobile-menu a { font-family:var(--font-display); font-size:clamp(1.6rem,6vw,2.5rem); font-weight:800; color:var(--muted); transition:color .2s,transform .2s; }
+        .mobile-menu a:hover { color:var(--text); transform:translateX(8px); }
+        @media(max-width:768px) { .nav-links, .nav-cta { display:none; } .hamburger { display:flex; } }
+
+        .breadcrumb { padding-top:clamp(84px,14vw,108px); font-family:var(--font-mono); font-size:12px; color:var(--muted); display:flex; align-items:center; gap:8px; flex-wrap:wrap; padding-bottom:4px; }
+        .breadcrumb a { color:var(--muted); transition:color .2s; }
+        .breadcrumb a:hover { color:var(--blue); }
+        .breadcrumb .sep { color:rgba(255,255,255,.2); }
+
+        .article-wrap { display:grid; grid-template-columns:minmax(0,1fr) 280px; gap:56px; padding:36px 0 80px; align-items:start; }
+        @media(max-width:960px) { .article-wrap { grid-template-columns:1fr; gap:40px; } }
+
+        article header { margin-bottom:36px; }
+        .post-tag { display:inline-block; font-family:var(--font-mono); font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase; padding:4px 10px; border-radius:6px; background:rgba(249,115,22,.08); color:#FB923C; border:1px solid rgba(249,115,22,.15); margin-bottom:16px; }
+        article h1 { font-family:var(--font-display); font-size:clamp(1.6rem,4vw,2.4rem); font-weight:800; line-height:1.2; margin-bottom:16px; }
+        .post-meta { font-family:var(--font-mono); font-size:12px; color:var(--muted); display:flex; gap:20px; flex-wrap:wrap; padding-bottom:28px; border-bottom:1px solid var(--border); }
+
+        .post-body { font-size:clamp(15px,1.6vw,16.5px); line-height:1.85; color:rgba(237,242,247,.88); }
+        .post-body h2 { font-family:var(--font-display); font-size:clamp(1.2rem,2.5vw,1.5rem); font-weight:800; color:var(--text); margin:44px 0 14px; line-height:1.25; }
+        .post-body h3 { font-family:var(--font-display); font-size:clamp(1rem,2vw,1.15rem); font-weight:700; color:var(--text); margin:28px 0 10px; }
+        .post-body p { margin-bottom:18px; }
+        .post-body ul { margin:0 0 18px 22px; display:flex; flex-direction:column; gap:7px; }
+        .post-body li { color:rgba(237,242,247,.8); }
+        .post-body strong { color:var(--text); font-weight:600; }
+        .post-body a { color:var(--blue); border-bottom:1px solid rgba(74,143,255,.3); transition:border-color .2s; }
+        .post-body a:hover { border-color:var(--blue); }
+        .post-body blockquote { border-left:3px solid #FB923C; padding:16px 20px; background:rgba(249,115,22,.05); border-radius:0 var(--radius) var(--radius) 0; margin:28px 0; font-style:italic; color:var(--muted); }
+
+        /* Tables — horizontally scrollable on mobile */
+        .table-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; margin:24px 0; border-radius:var(--radius); border:1px solid var(--border); }
+        .compare-table { width:100%; border-collapse:collapse; font-size:14px; min-width:480px; }
+        .compare-table th { text-align:left; padding:12px 16px; font-family:var(--font-mono); font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); background:var(--bg-2); border-bottom:1px solid var(--border); }
+        .compare-table td { padding:13px 16px; border-bottom:1px solid var(--border); color:rgba(237,242,247,.8); background:var(--bg); }
+        .compare-table tr:last-child td { border-bottom:none; }
+        .compare-table .win { color:var(--green); font-weight:600; }
+        .compare-table .lose { color:rgba(237,242,247,.3); }
+
+        .verdict { background:var(--bg-2); border:1px solid rgba(74,143,255,.2); border-left:4px solid var(--blue); border-radius:var(--radius); padding:clamp(18px,3vw,24px) clamp(18px,3vw,28px); margin:28px 0; }
+        .verdict-label { font-family:var(--font-mono); font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--blue); margin-bottom:8px; }
+        .verdict p { margin:0; font-size:15px; line-height:1.7; }
+
+        .sidebar { display:flex; flex-direction:column; gap:20px; }
+        @media(min-width:961px) { .sidebar { position:sticky; top:100px; } }
+        .sidebar-card { background:var(--bg-2); border:1px solid var(--border); border-radius:var(--radius-lg); padding:24px; }
+        .sidebar-card h3 { font-family:var(--font-display); font-size:16px; font-weight:800; margin-bottom:10px; }
+        .sidebar-card p { font-size:13.5px; color:var(--muted); line-height:1.7; margin-bottom:18px; }
+        .sidebar-card .btn { width:100%; justify-content:center; font-size:13px; padding:11px; }
+        .related-posts { display:flex; flex-direction:column; gap:14px; }
+        .related-post a { display:block; font-size:13.5px; font-weight:600; color:var(--text); line-height:1.4; margin-bottom:4px; transition:color .2s; }
+        .related-post a:hover { color:var(--blue); }
+        .related-post span { font-family:var(--font-mono); font-size:11px; color:var(--muted); }
+
+        footer { background:var(--bg-2); border-top:1px solid var(--border); padding:60px 0 36px; }
+        .footer-inner { display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:56px; margin-bottom:48px; }
+        @media(max-width:768px) { .footer-inner { grid-template-columns:1fr; gap:32px; } }
+        .footer-brand p { color:var(--muted); font-size:13.5px; line-height:1.7; margin:14px 0 0; }
+        .footer-col h4 { font-family:var(--font-display); font-size:13px; font-weight:700; letter-spacing:.5px; margin-bottom:16px; }
+        .footer-col ul { list-style:none; display:flex; flex-direction:column; gap:9px; }
+        .footer-col ul a { font-size:13.5px; color:var(--muted); transition:color .3s; }
+        .footer-col ul a:hover { color:var(--text); }
+        .footer-bottom { border-top:1px solid var(--border); padding-top:24px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+        .footer-bottom p { font-size:12px; color:var(--muted); font-family:var(--font-mono); }
+    </style>
+</head>
+<body>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#services">Services</a>
+        <a href="../work.html">Work</a>
+        <a href="../index.html#pricing">Pricing</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../index.html#contact">Contact</a>
+    </div>
+
+    <nav id="nav">
+        <div class="container nav-inner">
+            <a href="../index.html" class="nav-logo">dagan<span class="dot">.</span>dev</a>
+            <ul class="nav-links">
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#services">Services</a></li>
+                <li><a href="../work.html">Work</a></li>
+                <li><a href="../index.html#pricing">Pricing</a></li>
+                <li><a href="../blog.html" class="active">Blog</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+            <a href="../index.html#contact" class="btn btn-primary nav-cta" style="padding:10px 22px;font-size:14px;">Let's Talk</a>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a><span class="sep">/</span>
+            <a href="../blog.html">Blog</a><span class="sep">/</span>
+            <span style="color:var(--text);">Custom vs. Template</span>
+        </nav>
+
+        <div class="article-wrap">
+            <article>
+                <header>
+                    <span class="post-tag">SEO</span>
+                    <h1>Custom Website vs. Wix or Squarespace — Which Is Right for Your Business?</h1>
+                    <div class="post-meta">
+                        <span>By Dagan</span><span>April 2025</span><span>6 min read</span>
+                    </div>
+                </header>
+
+                <div class="post-body">
+                    <p>I'm going to say something that might surprise you coming from a web developer: <strong>Wix and Squarespace are fine for some businesses.</strong> If you run a small personal blog, a one-time event page, or a side project with minimal traffic — a template builder gets you online fast with minimal cost.</p>
+                    <p>But for a real business in Denton trying to generate leads, rank on Google, and compete with established competitors? The gap between a template and a custom site is significant — and it grows over time.</p>
+
+                    <h2>Where Templates Win</h2>
+                    <ul>
+                        <li><strong>Speed to launch</strong> — Live in a weekend with no technical knowledge</li>
+                        <li><strong>Low upfront cost</strong> — Most plans start under $30/month</li>
+                        <li><strong>Built-in hosting</strong> — No server setup required</li>
+                        <li><strong>Fine for simple sites</strong> — A basic brochure site works okay</li>
+                    </ul>
+
+                    <h2>Where Templates Fall Short</h2>
+
+                    <h3>Speed &amp; Core Web Vitals</h3>
+                    <p>Wix and Squarespace sites load a lot of code your site doesn't need. Google's Core Web Vitals — which directly affect your search ranking — are consistently worse on template-built sites. A custom-coded site can be <strong>3–5x faster</strong> because there's no bloat, no unused JavaScript, no platform overhead.</p>
+
+                    <h3>SEO Control</h3>
+                    <p>Template builders give you basic SEO settings. But true local SEO requires granular control: custom schema markup, precise heading hierarchy, structured data, page speed optimization. Template platforms abstract all of this away. You're working within their system, not building the right one for your business.</p>
+
+                    <h3>You Don't Own It</h3>
+                    <p>When your business is on Wix or Squarespace, you're renting. If they change pricing, update their platform in a way that breaks your design, or shut down a feature you depend on, you have no recourse. A custom site is an asset you own and can move anywhere.</p>
+
+                    <h3>The Real Cost Over Time</h3>
+
+                    <div class="table-scroll">
+                        <table class="compare-table">
+                            <thead><tr><th>Option</th><th>Year 1</th><th>Year 3</th><th>Year 5</th></tr></thead>
+                            <tbody>
+                                <tr><td>Squarespace Business</td><td class="lose">$276</td><td class="lose">$828</td><td class="lose">$1,380</td></tr>
+                                <tr><td>Wix Business</td><td class="lose">$348</td><td class="lose">$1,044</td><td class="lose">$1,740</td></tr>
+                                <tr><td>Custom site (Starter)</td><td class="win">$500 + $600/yr</td><td class="win">You own it</td><td class="win">You own it</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h2>Head-to-Head: What Actually Matters</h2>
+
+                    <div class="table-scroll">
+                        <table class="compare-table">
+                            <thead><tr><th>Factor</th><th>Template</th><th>Custom Site</th></tr></thead>
+                            <tbody>
+                                <tr><td>Page speed</td><td class="lose">Slow (platform overhead)</td><td class="win">Fast (clean code)</td></tr>
+                                <tr><td>SEO control</td><td class="lose">Limited</td><td class="win">Full</td></tr>
+                                <tr><td>Design uniqueness</td><td class="lose">Template-based</td><td class="win">100% custom</td></tr>
+                                <tr><td>You own it</td><td class="lose">No</td><td class="win">Yes</td></tr>
+                                <tr><td>Time to launch</td><td class="win">Days</td><td class="lose">1–3 weeks</td></tr>
+                                <tr><td>Upfront cost</td><td class="win">Low ($0–$30/mo)</td><td class="lose">Higher ($500+)</td></tr>
+                                <tr><td>Long-term cost</td><td class="lose">Ongoing forever</td><td class="win">Lower over time</td></tr>
+                                <tr><td>Mobile performance</td><td class="lose">Mediocre</td><td class="win">Optimized</td></tr>
+                                <tr><td>Custom features</td><td class="lose">Platform limits</td><td class="win">Anything</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h2>My Honest Recommendation</h2>
+                    <p><strong>Use a template if:</strong> you need to test an idea quickly, you're pre-revenue, or you genuinely only need a simple one-page brochure site you'll manage yourself.</p>
+                    <p><strong>Go custom if:</strong> your website is a real sales tool, you want to rank on Google for local searches, you care about how your brand looks, or you're planning to grow.</p>
+
+                    <div class="verdict">
+                        <div class="verdict-label">Bottom line</div>
+                        <p>For most Denton small businesses that want their website to actually generate customers — not just exist — a custom site will outperform a template within 6–12 months. The upfront investment pays off in rankings, conversions, and the fact that your site looks better than your competition's.</p>
+                    </div>
+
+                    <p>If you're on Wix or Squarespace right now and wondering if it's holding you back, <a href="../index.html#contact">reach out</a> — I'll take an honest look and tell you whether it's worth switching or not.</p>
+                </div>
+            </article>
+
+            <aside class="sidebar">
+                <div class="sidebar-card">
+                    <h3>Thinking about switching?</h3>
+                    <p>I migrate sites from Wix and Squarespace all the time — usually faster and cheaper than starting from scratch.</p>
+                    <a href="../index.html#contact" class="btn btn-primary">Let's Talk</a>
+                </div>
+                <div class="sidebar-card">
+                    <h3>Related posts</h3>
+                    <div class="related-posts">
+                        <div class="related-post">
+                            <a href="how-much-does-a-website-cost-denton-tx.html">How Much Does a Website Cost in Denton, TX?</a>
+                            <span>5 min read</span>
+                        </div>
+                        <div class="related-post">
+                            <a href="5-signs-your-website-is-hurting-your-business.html">5 Signs Your Site Is Costing You Customers</a>
+                            <span>4 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <a href="../index.html" class="nav-logo">dagan<span class="dot">.</span>dev</a>
+                    <p>Building websites that work as hard as you do. Based in Denton, TX — available everywhere.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="../index.html#services">Landing Pages</a></li>
+                        <li><a href="../index.html#services">Business Websites</a></li>
+                        <li><a href="../index.html#pricing">Maintenance Plans</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../work.html">Portfolio</a></li>
+                        <li><a href="../blog.html">Blog</a></li>
+                        <li><a href="../index.html#contact">Get a Quote</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© <span id="year"></span> Dagan Web Dev · Denton, TX</p>
+                <p>Built with HTML, CSS &amp; JS · <span style="color:var(--blue);">No templates. No shortcuts.</span></p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+        window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', scrollY > 40); });
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            mobileMenu.classList.toggle('open');
+            document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+        });
+        mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+            hamburger.classList.remove('open');
+            mobileMenu.classList.remove('open');
+            document.body.style.overflow = '';
+        }));
+    </script>
+</body>
+</html>

@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Work | Dagan Web Dev</title>
+    <meta name="description" content="Portfolio of web development projects by Dagan — local business websites, landing pages, and e-commerce builds in Denton, TX." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg:       #070A10;
+            --bg-2:     #0C1018;
+            --bg-3:     #111622;
+            --blue:     #4A8FFF;
+            --green:    #34D399;
+            --text:     #EDF2F7;
+            --muted:    #718096;
+            --border:        rgba(255,255,255,0.07);
+            --border-hover:  rgba(74,143,255,0.4);
+            --radius:    14px;
+            --radius-lg: 22px;
+            --font-display: 'Syne', sans-serif;
+            --font-body:    'Inter', sans-serif;
+            --font-mono:    'JetBrains Mono', monospace;
+            --ease:   cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { -webkit-font-smoothing: antialiased; }
+        body { background: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+        img { display: block; max-width: 100%; }
+
+        /* ===== CURSOR ===== */
+        .cursor-dot  { width: 8px; height: 8px; background: var(--blue); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); }
+        .cursor-ring { width: 36px; height: 36px; border: 1.5px solid rgba(74,143,255,.5); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .3s var(--ease), height .3s var(--ease), border-color .3s; }
+        body.cursor-hover .cursor-ring { width: 54px; height: 54px; border-color: var(--blue); }
+        @media (hover: none) { .cursor-dot, .cursor-ring { display: none; } }
+
+        /* ===== BG ===== */
+        .bg-glow { position: fixed; pointer-events: none; z-index: -1; border-radius: 50%; filter: blur(80px); }
+        .bg-glow-1 { width: 600px; height: 600px; background: rgba(74,143,255,.06); top: -80px; right: -80px; }
+        .bg-glow-2 { width: 400px; height: 400px; background: rgba(52,211,153,.04); bottom: 10%; left: -60px; }
+        .grid-overlay {
+            position: fixed; inset: 0; z-index: -1;
+            background-image: linear-gradient(rgba(255,255,255,.013) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.013) 1px, transparent 1px);
+            background-size: 60px 60px;
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 10%, #000 90%, transparent 100%);
+            mask-image: linear-gradient(to bottom, transparent 0%, #000 10%, #000 90%, transparent 100%);
+        }
+
+        /* ===== NAV ===== */
+        nav {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+            padding: 22px 0; transition: all .4s var(--ease);
+        }
+        nav.scrolled {
+            padding: 12px 0; background: rgba(7,10,16,.88);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--border);
+        }
+        .container { width: 90%; max-width: 1160px; margin: 0 auto; }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-family: var(--font-display); font-size: 19px; font-weight: 800; letter-spacing: -.5px; }
+        .nav-logo .dot { color: var(--blue); }
+        .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+        .nav-links a { font-size: 14px; font-weight: 500; color: var(--muted); transition: color .3s; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--blue); transition: width .3s var(--ease); }
+        .nav-links a:hover, .nav-links a.active { color: var(--text); }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; border-radius: 99px; font-family: var(--font-body); font-weight: 600; font-size: 15px; transition: all .3s var(--ease); cursor: pointer; border: none; }
+        .btn-primary { background: var(--blue); color: #fff; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(74,143,255,.35); }
+        .btn-ghost { background: rgba(255,255,255,.05); color: var(--text); border: 1px solid var(--border); }
+        .btn-ghost:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+        .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all .3s var(--ease); }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        .mobile-menu { position: fixed; inset: 0; z-index: 99; background: var(--bg); flex-direction: column; align-items: center; justify-content: center; gap: 36px; opacity: 0; pointer-events: none; transition: opacity .3s var(--ease); display: none; }
+        .mobile-menu.open { opacity: 1; pointer-events: all; }
+        .mobile-menu a { font-family: var(--font-display); font-size: clamp(2rem, 8vw, 3rem); font-weight: 800; color: var(--muted); transition: color .3s, transform .3s; }
+        .mobile-menu a:hover { color: var(--text); transform: translateX(10px); }
+        @media (max-width: 768px) {
+            .nav-links, .nav-cta { display: none; }
+            .hamburger { display: flex; }
+            .mobile-menu { display: flex; }
+        }
+
+        /* ===== PAGE HEADER ===== */
+        .page-header { padding: 160px 0 80px; }
+        .page-header .label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: var(--blue); display: inline-flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+        .page-header .label::before { content: ''; width: 20px; height: 1px; background: var(--blue); }
+        .page-header h1 { font-size: clamp(2.8rem, 7vw, 5.5rem); font-weight: 800; letter-spacing: -2.5px; line-height: .95; margin-bottom: 20px; }
+        .page-header p { color: var(--muted); font-size: 16px; max-width: 500px; line-height: 1.75; }
+        .header-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+
+        /* ===== FILTER TABS ===== */
+        .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 52px; }
+        .filter-btn {
+            padding: 8px 18px; border-radius: 99px; font-size: 13px; font-weight: 500;
+            background: rgba(255,255,255,.04); border: 1px solid var(--border);
+            color: var(--muted); cursor: pointer; transition: all .25s var(--ease);
+            font-family: var(--font-body);
+        }
+        .filter-btn:hover { border-color: var(--border-hover); color: var(--text); }
+        .filter-btn.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+        .filter-count { font-family: var(--font-mono); font-size: 10px; margin-left: 6px; opacity: .7; }
+
+        /* ===== PROJECT GRID ===== */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        @media (max-width: 1000px) { .project-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px)  { .project-grid { grid-template-columns: 1fr; } }
+
+        /* Featured card spans 2 columns */
+        .project-card.featured { grid-column: span 2; }
+        @media (max-width: 1000px) { .project-card.featured { grid-column: span 2; } }
+        @media (max-width: 600px)  { .project-card.featured { grid-column: span 1; } }
+
+        .project-card {
+            background: var(--bg-2); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); overflow: hidden;
+            cursor: pointer; transition: all .4s var(--ease); position: relative;
+        }
+        .project-card:hover { border-color: var(--border-hover); transform: translateY(-8px); box-shadow: 0 32px 64px rgba(0,0,0,.45); }
+        .project-card.hidden { display: none; }
+
+        /* Thumbnail */
+        .card-thumb {
+            width: 100%; aspect-ratio: 16/9; position: relative; overflow: hidden;
+            background: var(--bg-3);
+        }
+        .project-card.featured .card-thumb { aspect-ratio: 21/9; }
+        @media (max-width: 600px) { .project-card.featured .card-thumb { aspect-ratio: 16/9; } }
+
+        .card-thumb img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform .6s var(--ease), opacity .3s;
+        }
+        .project-card:hover .card-thumb img { transform: scale(1.04); }
+
+        /* Browser mockup fallback */
+        .thumb-mockup {
+            width: 100%; height: 100%; display: flex; flex-direction: column;
+        }
+        .mock-bar {
+            height: 28px; background: #141720; display: flex; align-items: center;
+            padding: 0 12px; gap: 6px; border-bottom: 1px solid rgba(255,255,255,.05); flex-shrink: 0;
+        }
+        .m-dot { width: 7px; height: 7px; border-radius: 50%; }
+        .m-r { background: #FF5F57; } .m-y { background: #FEBC2E; } .m-g { background: #28C840; }
+        .mock-url { flex: 1; height: 14px; background: rgba(255,255,255,.05); border-radius: 99px; margin-left: 8px; }
+        .mock-body { flex: 1; display: flex; align-items: center; justify-content: center; position: relative; }
+        .mock-body-inner { text-align: center; }
+        .mock-placeholder-icon { font-size: 32px; opacity: .15; margin-bottom: 8px; }
+        .mock-placeholder-text { font-family: var(--font-mono); font-size: 11px; color: var(--muted); opacity: .5; letter-spacing: 2px; }
+
+        /* Hover overlay */
+        .card-overlay {
+            position: absolute; inset: 0;
+            background: rgba(7,10,16,.7); backdrop-filter: blur(4px);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity .3s;
+        }
+        .project-card:hover .card-overlay { opacity: 1; }
+        .overlay-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: white; color: #000; padding: 12px 24px; border-radius: 99px;
+            font-weight: 700; font-size: 14px; font-family: var(--font-display);
+            transform: translateY(6px); transition: transform .3s var(--ease);
+        }
+        .project-card:hover .overlay-btn { transform: translateY(0); }
+
+        /* Card info */
+        .card-info { padding: 24px; }
+        .card-cat {
+            display: inline-block; font-family: var(--font-mono); font-size: 10px;
+            text-transform: uppercase; letter-spacing: 2px; color: var(--blue);
+            margin-bottom: 8px;
+        }
+        .card-info h3 { font-family: var(--font-display); font-size: 19px; font-weight: 700; margin-bottom: 6px; }
+        .card-info p { color: var(--muted); font-size: 13.5px; line-height: 1.65; margin-bottom: 16px; }
+        .card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .tag {
+            padding: 3px 10px; background: rgba(74,143,255,.08);
+            border: 1px solid rgba(74,143,255,.16); border-radius: 99px;
+            font-size: 11px; font-family: var(--font-mono); color: var(--blue);
+        }
+
+        /* ===== EMPTY STATE ===== */
+        .empty-state {
+            grid-column: 1 / -1; text-align: center; padding: 80px 20px;
+            display: none;
+        }
+        .empty-state.visible { display: block; }
+        .empty-state p { color: var(--muted); font-size: 16px; }
+
+        /* ===== MODAL ===== */
+        .modal-backdrop {
+            position: fixed; inset: 0; z-index: 200;
+            background: rgba(0,0,0,.85); backdrop-filter: blur(8px);
+            display: flex; align-items: center; justify-content: center;
+            padding: 24px; opacity: 0; pointer-events: none;
+            transition: opacity .3s var(--ease);
+        }
+        .modal-backdrop.open { opacity: 1; pointer-events: all; }
+
+        .modal {
+            background: var(--bg-2); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); width: 100%; max-width: 1080px;
+            max-height: 90vh; overflow: hidden; display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            transform: scale(.95) translateY(16px); transition: transform .4s var(--ease);
+        }
+        .modal-backdrop.open .modal { transform: scale(1) translateY(0); }
+        @media (max-width: 840px) { .modal { grid-template-columns: 1fr; max-height: 92vh; overflow-y: auto; } }
+
+        /* Modal left panel */
+        .modal-left {
+            padding: 40px; overflow-y: auto; display: flex; flex-direction: column;
+            border-right: 1px solid var(--border);
+        }
+        @media (max-width: 840px) { .modal-left { border-right: none; border-bottom: 1px solid var(--border); max-height: none; } }
+
+        .modal-cat { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--blue); margin-bottom: 10px; }
+        .modal-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; margin-bottom: 14px; line-height: 1.1; }
+        .modal-desc { color: var(--muted); font-size: 15px; line-height: 1.75; margin-bottom: 24px; }
+
+        .modal-section-label { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--blue); margin-bottom: 8px; display: block; }
+        .modal-challenge { color: var(--muted); font-size: 14px; line-height: 1.75; margin-bottom: 20px; padding: 16px; background: rgba(255,255,255,.03); border: 1px solid var(--border); border-radius: var(--radius); }
+        .modal-solution { color: var(--muted); font-size: 14px; line-height: 1.75; margin-bottom: 24px; padding: 16px; background: rgba(52,211,153,.04); border: 1px solid rgba(52,211,153,.12); border-radius: var(--radius); }
+
+        .modal-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 28px; }
+
+        .modal-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: auto; }
+        .modal-actions .btn { padding: 11px 22px; font-size: 14px; }
+
+        /* Modal right panel */
+        .modal-right { display: flex; flex-direction: column; background: var(--bg-3); }
+        .modal-preview-tabs {
+            display: flex; border-bottom: 1px solid var(--border);
+            padding: 0 16px; background: var(--bg-2); flex-shrink: 0;
+        }
+        .preview-tab {
+            padding: 14px 16px; font-size: 13px; font-weight: 500; color: var(--muted);
+            cursor: pointer; border-bottom: 2px solid transparent;
+            transition: color .2s, border-color .2s; background: none; border-top: none;
+            border-left: none; border-right: none; font-family: var(--font-body);
+        }
+        .preview-tab.active { color: var(--text); border-bottom-color: var(--blue); }
+
+        .preview-pane { flex: 1; position: relative; min-height: 300px; display: none; }
+        .preview-pane.active { display: flex; flex-direction: column; }
+
+        /* Screenshot pane */
+        .screenshot-pane { overflow-y: auto; }
+        .screenshot-pane img { width: 100%; display: block; }
+        .screenshot-empty {
+            flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 12px; color: var(--muted); text-align: center; padding: 40px;
+        }
+        .screenshot-empty svg { opacity: .3; }
+        .screenshot-empty p { font-size: 14px; line-height: 1.6; }
+        .screenshot-empty code { font-family: var(--font-mono); font-size: 12px; color: var(--blue); background: rgba(74,143,255,.08); padding: 3px 8px; border-radius: 4px; }
+
+        /* Live site pane */
+        .live-pane { flex: 1; position: relative; }
+        .iframe-wrap { position: absolute; inset: 0; }
+        .iframe-wrap iframe { width: 100%; height: 100%; border: none; }
+        .iframe-blocked {
+            position: absolute; inset: 0; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; gap: 16px;
+            text-align: center; padding: 32px; background: var(--bg-3);
+        }
+        .iframe-blocked svg { opacity: .25; }
+        .iframe-blocked p { color: var(--muted); font-size: 14px; max-width: 300px; line-height: 1.6; }
+
+        /* Close button */
+        .modal-close {
+            position: absolute; top: 16px; right: 16px; z-index: 10;
+            width: 34px; height: 34px; border-radius: 50%;
+            background: rgba(255,255,255,.06); border: 1px solid var(--border);
+            display: grid; place-items: center; cursor: pointer; color: var(--muted);
+            transition: all .2s; font-family: var(--font-body); font-size: 18px;
+        }
+        .modal-close:hover { background: rgba(255,255,255,.12); color: var(--text); }
+
+        /* Nav arrows */
+        .modal-nav { display: flex; gap: 8px; position: absolute; top: 16px; left: 16px; z-index: 10; }
+        .modal-nav-btn {
+            width: 34px; height: 34px; border-radius: 50%;
+            background: rgba(255,255,255,.06); border: 1px solid var(--border);
+            display: grid; place-items: center; cursor: pointer; color: var(--muted);
+            transition: all .2s; font-family: var(--font-body);
+        }
+        .modal-nav-btn:hover { background: var(--blue); border-color: var(--blue); color: white; }
+        .modal-nav-btn:disabled { opacity: .3; cursor: not-allowed; }
+        .modal-nav-btn:disabled:hover { background: rgba(255,255,255,.06); border-color: var(--border); color: var(--muted); }
+
+        /* ===== FOOTER ===== */
+        footer { background: var(--bg-2); border-top: 1px solid var(--border); padding: 48px 0 32px; margin-top: 120px; }
+        .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+        .footer-inner p { font-size: 13px; color: var(--muted); font-family: var(--font-mono); }
+        .footer-links { display: flex; gap: 24px; }
+        .footer-links a { font-size: 13.5px; color: var(--muted); transition: color .2s; }
+        .footer-links a:hover { color: var(--text); }
+
+        /* ===== ANIMATIONS ===== */
+        [data-fade] { opacity: 0; transform: translateY(20px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+        [data-fade].in-view { opacity: 1; transform: none; }
+        [data-delay="100"] { transition-delay: .1s; }
+        [data-delay="200"] { transition-delay: .2s; }
+        [data-delay="300"] { transition-delay: .3s; }
+        [data-delay="400"] { transition-delay: .4s; }
+        [data-delay="500"] { transition-delay: .5s; }
+        [data-delay="600"] { transition-delay: .6s; }
+    </style>
+</head>
+<body>
+
+    <div class="cursor-dot"  id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="grid-overlay"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html#about"    class="mob-link">About</a>
+        <a href="index.html#services" class="mob-link">Services</a>
+        <a href="work.html"           class="mob-link">Work</a>
+        <a href="index.html#pricing"  class="mob-link">Pricing</a>
+        <a href="blog.html"           class="mob-link">Blog</a>
+        <a href="index.html#contact"  class="mob-link">Contact</a>
+    </div>
+
+    <!-- NAV -->
+    <nav id="nav">
+        <div class="container nav-inner">
+            <a href="index.html" class="nav-logo">dagan<span class="dot">.</span>dev</a>
+            <ul class="nav-links">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="work.html" class="active">Work</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <a href="index.html#contact" class="btn btn-primary nav-cta" style="padding:10px 22px;font-size:14px;">Let's Talk</a>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+        <div class="container">
+            <div class="header-row">
+                <div>
+                    <span class="label" data-fade>My Work</span>
+                    <h1 data-fade data-delay="100">Projects that<br>speak for themselves.</h1>
+                    <p data-fade data-delay="200">Every site here was built from scratch — no templates, no shortcuts. Click any project to see the full story.</p>
+                </div>
+                <a href="index.html#contact" class="btn btn-primary" data-fade data-delay="300" style="flex-shrink:0;">
+                    Start Your Project
+                    <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <div class="container">
+
+            <!-- Filter bar -->
+            <div class="filter-bar" id="filterBar" data-fade>
+                <button class="filter-btn active" data-filter="all">All <span class="filter-count" id="countAll"></span></button>
+                <button class="filter-btn" data-filter="landing">Landing Pages <span class="filter-count" id="countLanding"></span></button>
+                <button class="filter-btn" data-filter="business">Business Sites <span class="filter-count" id="countBusiness"></span></button>
+                <button class="filter-btn" data-filter="ecommerce">E-Commerce <span class="filter-count" id="countEcommerce"></span></button>
+                <button class="filter-btn" data-filter="redesign">Redesigns <span class="filter-count" id="countRedesign"></span></button>
+            </div>
+
+            <!-- Project grid -->
+            <div class="project-grid" id="projectGrid">
+                <!-- Cards injected by JS -->
+                <div class="empty-state" id="emptyState">
+                    <p>No projects in this category yet — check back soon.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- MODAL -->
+    <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true">
+        <div class="modal" id="modal">
+
+            <!-- Nav arrows -->
+            <div class="modal-nav">
+                <button class="modal-nav-btn" id="modalPrev" title="Previous project" aria-label="Previous">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <button class="modal-nav-btn" id="modalNext" title="Next project" aria-label="Next">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+            </div>
+
+            <!-- Close -->
+            <button class="modal-close" id="modalClose" aria-label="Close">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+
+            <!-- Left: Project info -->
+            <div class="modal-left" id="modalLeft">
+                <div class="modal-cat"  id="mCat"></div>
+                <div class="modal-title" id="mTitle"></div>
+                <div class="modal-desc"  id="mDesc"></div>
+
+                <span class="modal-section-label">The Challenge</span>
+                <div class="modal-challenge" id="mChallenge"></div>
+
+                <span class="modal-section-label">The Solution</span>
+                <div class="modal-solution" id="mSolution"></div>
+
+                <span class="modal-section-label" style="margin-bottom:10px;">Tech Stack</span>
+                <div class="modal-tags" id="mTags"></div>
+
+                <div class="modal-actions" id="mActions"></div>
+            </div>
+
+            <!-- Right: Preview -->
+            <div class="modal-right">
+                <div class="modal-preview-tabs">
+                    <button class="preview-tab active" data-pane="screenshot">Screenshots</button>
+                    <button class="preview-tab" data-pane="live">Live Site</button>
+                </div>
+
+                <!-- Screenshot pane -->
+                <div class="preview-pane screenshot-pane active" id="paneScreenshot">
+                    <!-- Populated by JS -->
+                </div>
+
+                <!-- Live site pane -->
+                <div class="preview-pane live-pane" id="paneLive">
+                    <div class="iframe-wrap" id="iframeWrap">
+                        <!-- iframe injected on tab click to avoid loading all sites -->
+                    </div>
+                    <div class="iframe-blocked" id="iframeBlocked" style="display:none;">
+                        <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        <p>This site blocks embedding. Open it in a new tab to see it live.</p>
+                        <a id="iframeOpenBtn" href="#" target="_blank" class="btn btn-ghost" style="padding:10px 20px;font-size:13px;">Open Live Site</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-inner">
+            <p>© <span id="year"></span> Dagan Web Dev · Denton, TX</p>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#services">Services</a>
+                <a href="index.html#pricing">Pricing</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    /* =====================================================================
+       HOW TO ADD A PROJECT
+       =====================================================================
+       1. Copy one of the objects below and paste it into the PROJECTS array.
+       2. Fill in your details.
+       3. For screenshots:
+          - Create a folder called "screenshots" next to this file (if it
+            doesn't exist already).
+          - Drop in your screenshot as a .jpg or .png.
+            Recommended size: 1440×900px (16/10 ratio).
+          - Set the "screenshots" array to the file path(s):
+            screenshots: ['screenshots/my-project.jpg']
+          - If you have multiple screenshots, add more paths to the array.
+          - Leave as [] if you don't have one yet.
+       4. For liveUrl:
+          - Set to the live URL so the "Live Site" tab works.
+          - Leave as '' if the site isn't live yet.
+       5. Categories: 'landing' | 'business' | 'ecommerce' | 'redesign'
+       6. Set featured: true for ONE project to make it span 2 columns.
+       ===================================================================== */
+
+    const PROJECTS = [
+        {
+            id:          'pawsome-pomskies',
+            title:       'Pawsome Pomskies',
+            category:    'business',
+            featured:    true,
+            tags:        ['HTML/CSS/JS', 'Custom Forms', 'Local SEO', 'Mobile-First'],
+            description: 'Multi-page website for a Pomsky breeder — showcasing available puppies, answering buyer FAQs, and capturing serious inquiries through a custom contact form.',
+            challenge:   'The client had an outdated site that looked unprofessional and buried key info like puppy availability and pricing deep in the page. Serious buyers were reaching out less than they should have been.',
+            solution:    'Rebuilt the site from scratch with a clean, photo-forward layout and a structured inquiry form that filters casual browsers from committed buyers. Added FAQ, health guarantee, and testimonials sections to build trust before anyone picks up the phone.',
+            liveUrl:     'https://pawsomepomskies.com/',
+            screenshots: [],
+        },
+        {
+            id:          'oakspire-lawnscape',
+            title:       'Oakspire Lawnscape',
+            category:    'landing',
+            featured:    false,
+            tags:        ['HTML/CSS/JS', 'Web3Forms', 'Responsive Design', 'SEO'],
+            description: 'Fast, single-page site for a Denton-area lawn care company — built around one goal: getting visitors to request a quote.',
+            challenge:   'The owner was getting traffic but very few inquiries. The old site had no clear call to action, loaded slowly on mobile, and looked generic enough to get ignored.',
+            solution:    'Built a clean single-page site from scratch with a prominent quote request form above the fold, a services breakdown, and a Google PageSpeed score of 99 on mobile. Every design decision pointed visitors toward booking.',
+            liveUrl:     'https://oakspire-lawnscape.vercel.app/',
+            screenshots: [],
+        },
+        {
+            id:          'tx65',
+            title:       'TX65',
+            category:    'business',
+            featured:    false,
+            tags:        ['HTML/CSS/JS', 'Custom Design', 'Responsive', 'Performance'],
+            description: 'A full custom-built business website with a polished design, fast load times, and a layout tailored to how the client\'s customers actually browse and decide.',
+            challenge:   'The client needed something that stood out from the template-built sites in their space — a site that felt premium without requiring a premium agency budget.',
+            solution:    'Delivered a fully custom build with a distinct visual identity, clean typography, and a layout optimized for both desktop and mobile. No page builder overhead — just clean, hand-written code that loads fast and converts.',
+            liveUrl:     'https://tx65-frontend-main.vercel.app/',
+            screenshots: [],
+        },
+    ];
+
+    /* ===================================================================
+       END OF CONFIG — don't edit below unless you know what you're doing
+       =================================================================== */
+
+    const CATEGORY_LABELS = {
+        landing:  'Landing Page',
+        business: 'Business Site',
+        ecommerce:'E-Commerce',
+        redesign: 'Redesign',
+    };
+
+    /* ===== CURSOR ===== */
+    const dot  = document.getElementById('cursorDot');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => {
+        mx = e.clientX; my = e.clientY;
+        dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+    });
+    (function animRing() {
+        rx += (mx - rx) * .12; ry += (my - ry) * .12;
+        ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+        requestAnimationFrame(animRing);
+    })();
+    function setCursorHover(els) {
+        els.forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+        });
+    }
+
+    /* ===== NAV ===== */
+    window.addEventListener('scroll', () =>
+        document.getElementById('nav').classList.toggle('scrolled', scrollY > 40)
+    );
+    const hamburger  = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+        document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+    document.querySelectorAll('.mob-link').forEach(l => l.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+    }));
+
+    /* ===== SCROLL REVEAL ===== */
+    const fadeObs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); fadeObs.unobserve(e.target); } });
+    }, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('[data-fade]').forEach(el => fadeObs.observe(el));
+
+    /* ===== BUILD CARDS ===== */
+    const grid      = document.getElementById('projectGrid');
+    const emptyState = document.getElementById('emptyState');
+
+    function buildCard(p) {
+        const card = document.createElement('div');
+        card.className = 'project-card' + (p.featured ? ' featured' : '');
+        card.dataset.category = p.category;
+        card.dataset.id = p.id;
+
+        const hasScreenshot = p.screenshots && p.screenshots.length > 0;
+        const thumbHtml = hasScreenshot
+            ? `<img src="${p.screenshots[0]}" alt="${p.title} screenshot" loading="lazy">`
+            : `<div class="thumb-mockup">
+                 <div class="mock-bar">
+                   <div class="m-dot m-r"></div><div class="m-dot m-y"></div><div class="m-dot m-g"></div>
+                   <div class="mock-url"></div>
+                 </div>
+                 <div class="mock-body">
+                   <div class="mock-body-inner">
+                     <div class="mock-placeholder-icon">◻</div>
+                     <div class="mock-placeholder-text">SCREENSHOT COMING SOON</div>
+                   </div>
+                 </div>
+               </div>`;
+
+        card.innerHTML = `
+            <div class="card-thumb">
+                ${thumbHtml}
+                <div class="card-overlay">
+                    <div class="overlay-btn">
+                        View Project
+                        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <span class="card-cat">${CATEGORY_LABELS[p.category] || p.category}</span>
+                <h3>${p.title}</h3>
+                <p>${p.description}</p>
+                <div class="card-tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+            </div>
+        `;
+
+        card.addEventListener('click', () => openModal(p.id));
+        return card;
+    }
+
+    function renderCards(filter = 'all') {
+        // Remove old cards (keep emptyState)
+        Array.from(grid.children).forEach(c => { if (c !== emptyState) c.remove(); });
+
+        const filtered = filter === 'all' ? PROJECTS : PROJECTS.filter(p => p.category === filter);
+
+        if (filtered.length === 0) {
+            emptyState.classList.add('visible');
+        } else {
+            emptyState.classList.remove('visible');
+            filtered.forEach((p, i) => {
+                const card = buildCard(p);
+                card.style.transitionDelay = `${i * 60}ms`;
+                grid.insertBefore(card, emptyState);
+                requestAnimationFrame(() => requestAnimationFrame(() => card.style.opacity = '1'));
+            });
+        }
+
+        setCursorHover(document.querySelectorAll('.project-card'));
+    }
+
+    /* ===== FILTER COUNTS ===== */
+    function updateCounts() {
+        document.getElementById('countAll').textContent      = `(${PROJECTS.length})`;
+        document.getElementById('countLanding').textContent  = `(${PROJECTS.filter(p=>p.category==='landing').length})`;
+        document.getElementById('countBusiness').textContent = `(${PROJECTS.filter(p=>p.category==='business').length})`;
+        document.getElementById('countEcommerce').textContent= `(${PROJECTS.filter(p=>p.category==='ecommerce').length})`;
+        document.getElementById('countRedesign').textContent = `(${PROJECTS.filter(p=>p.category==='redesign').length})`;
+    }
+    updateCounts();
+
+    /* ===== FILTER BUTTONS ===== */
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderCards(btn.dataset.filter);
+        });
+    });
+
+    renderCards();
+
+    /* ===== MODAL ===== */
+    let currentProjectIndex = 0;
+    let currentFilter = 'all';
+    let iframeLoaded = false;
+
+    const backdrop     = document.getElementById('modalBackdrop');
+    const modalClose   = document.getElementById('modalClose');
+    const modalPrev    = document.getElementById('modalPrev');
+    const modalNext    = document.getElementById('modalNext');
+    const previewTabs  = document.querySelectorAll('.preview-tab');
+    const paneScreenshot = document.getElementById('paneScreenshot');
+    const paneLive       = document.getElementById('paneLive');
+    const iframeWrap     = document.getElementById('iframeWrap');
+    const iframeBlocked  = document.getElementById('iframeBlocked');
+
+    function getVisibleProjects() {
+        const filter = document.querySelector('.filter-btn.active').dataset.filter;
+        return filter === 'all' ? PROJECTS : PROJECTS.filter(p => p.category === filter);
+    }
+
+    function openModal(id) {
+        const visible = getVisibleProjects();
+        currentProjectIndex = visible.findIndex(p => p.id === id);
+        renderModal(visible[currentProjectIndex]);
+        backdrop.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        // Reset to screenshot tab
+        switchPane('screenshot');
+        iframeLoaded = false;
+    }
+
+    function closeModal() {
+        backdrop.classList.remove('open');
+        document.body.style.overflow = '';
+        // Clear iframe to stop loading
+        iframeWrap.innerHTML = '';
+        iframeLoaded = false;
+    }
+
+    function renderModal(p) {
+        document.getElementById('mCat').textContent   = CATEGORY_LABELS[p.category] || p.category;
+        document.getElementById('mTitle').textContent = p.title;
+        document.getElementById('mDesc').textContent  = p.description;
+        document.getElementById('mChallenge').textContent = p.challenge;
+        document.getElementById('mSolution').textContent  = p.solution;
+        document.getElementById('mTags').innerHTML =
+            p.tags.map(t => `<span class="tag">${t}</span>`).join('');
+
+        // Actions
+        const actions = document.getElementById('mActions');
+        actions.innerHTML = '';
+        if (p.liveUrl) {
+            const a = document.createElement('a');
+            a.href = p.liveUrl; a.target = '_blank'; a.rel = 'noopener';
+            a.className = 'btn btn-primary'; a.style.fontSize = '14px';
+            a.innerHTML = `Visit Live Site <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
+            actions.appendChild(a);
+        }
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'btn btn-ghost'; closeBtn.style.fontSize = '14px';
+        closeBtn.textContent = 'Close';
+        closeBtn.addEventListener('click', closeModal);
+        actions.appendChild(closeBtn);
+
+        // Screenshots
+        if (p.screenshots && p.screenshots.length > 0) {
+            paneScreenshot.innerHTML = p.screenshots.map(s =>
+                `<img src="${s}" alt="${p.title}" loading="lazy">`
+            ).join('');
+        } else {
+            paneScreenshot.innerHTML = `
+                <div class="screenshot-empty">
+                    <svg width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                    <p>
+                        No screenshot yet. To add one, drop a <code>.jpg</code> or <code>.png</code> into
+                        the <code>screenshots/</code> folder and update the project's
+                        <code>screenshots</code> array in <code>work.html</code>.
+                    </p>
+                </div>`;
+        }
+
+        // Update live site iframe stub
+        if (p.liveUrl) {
+            document.getElementById('iframeOpenBtn').href = p.liveUrl;
+        }
+        iframeWrap.innerHTML = '';
+        iframeLoaded = false;
+
+        // Prev / Next buttons
+        const visible = getVisibleProjects();
+        modalPrev.disabled = currentProjectIndex === 0;
+        modalNext.disabled = currentProjectIndex === visible.length - 1;
+
+        setCursorHover([modalClose, modalPrev, modalNext, ...actions.querySelectorAll('button, a')]);
+    }
+
+    function switchPane(name) {
+        previewTabs.forEach(t => t.classList.toggle('active', t.dataset.pane === name));
+        paneScreenshot.classList.toggle('active', name === 'screenshot');
+        paneLive.classList.toggle('active', name === 'live');
+
+        if (name === 'live' && !iframeLoaded) {
+            const visible = getVisibleProjects();
+            const p = visible[currentProjectIndex];
+            if (p.liveUrl) {
+                iframeWrap.style.display = '';
+                iframeBlocked.style.display = 'none';
+                const iframe = document.createElement('iframe');
+                iframe.src = p.liveUrl;
+                iframe.title = p.title;
+                iframe.sandbox = 'allow-scripts allow-same-origin allow-forms';
+                iframe.addEventListener('error', () => showIframeBlocked(p.liveUrl));
+                iframeWrap.innerHTML = '';
+                iframeWrap.appendChild(iframe);
+                iframeLoaded = true;
+
+                // Many sites block via CSP, detect via timeout heuristic
+                setTimeout(() => {
+                    try {
+                        if (iframe.contentDocument === null) showIframeBlocked(p.liveUrl);
+                    } catch { showIframeBlocked(p.liveUrl); }
+                }, 3000);
+            } else {
+                showIframeBlocked('');
+            }
+        }
+    }
+
+    function showIframeBlocked(url) {
+        iframeWrap.style.display = 'none';
+        iframeBlocked.style.display = '';
+        const btn = document.getElementById('iframeOpenBtn');
+        if (url) { btn.href = url; btn.style.display = ''; }
+        else { btn.style.display = 'none'; }
+    }
+
+    previewTabs.forEach(t => t.addEventListener('click', () => switchPane(t.dataset.pane)));
+
+    modalClose.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', e => { if (e.target === backdrop) closeModal(); });
+    document.addEventListener('keydown', e => {
+        if (!backdrop.classList.contains('open')) return;
+        if (e.key === 'Escape') closeModal();
+        if (e.key === 'ArrowLeft')  modalPrev.click();
+        if (e.key === 'ArrowRight') modalNext.click();
+    });
+
+    modalPrev.addEventListener('click', () => {
+        const visible = getVisibleProjects();
+        if (currentProjectIndex > 0) {
+            currentProjectIndex--;
+            renderModal(visible[currentProjectIndex]);
+            switchPane('screenshot');
+            iframeLoaded = false;
+        }
+    });
+    modalNext.addEventListener('click', () => {
+        const visible = getVisibleProjects();
+        if (currentProjectIndex < visible.length - 1) {
+            currentProjectIndex++;
+            renderModal(visible[currentProjectIndex]);
+            switchPane('screenshot');
+            iframeLoaded = false;
+        }
+    });
+
+    setCursorHover([modalClose, modalPrev, modalNext]);
+
+    /* ===== FOOTER YEAR ===== */
+    document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>
