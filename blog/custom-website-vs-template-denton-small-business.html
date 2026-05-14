@@ -76,7 +76,7 @@
         .breadcrumb .sep { color:rgba(255,255,255,.2); }
 
         .article-wrap { display:grid; grid-template-columns:minmax(0,1fr) 280px; gap:56px; padding:36px 0 80px; align-items:start; }
-        @media(max-width:960px) { .article-wrap { grid-template-columns:1fr; gap:40px; } }
+        @media(max-width:960px) { .article-wrap { grid-template-columns:minmax(0,1fr); gap:40px; } }
 
         article header { margin-bottom:36px; }
         .post-tag { display:inline-block; font-family:var(--font-mono); font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase; padding:4px 10px; border-radius:6px; background:rgba(249,115,22,.08); color:#FB923C; border:1px solid rgba(249,115,22,.15); margin-bottom:16px; }
