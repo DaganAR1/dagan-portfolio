@@ -88,7 +88,8 @@
         /* ===== RESET ===== */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { -webkit-font-smoothing: antialiased; }
-        body { background: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.6; max-width: 100%; overflow-x: clip; }
+        body { background: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.6; }
+        .page-wrap { overflow-x: hidden; position: relative; }
         img { display: block; max-width: 100%; }
         a { text-decoration: none; color: inherit; }
 
@@ -872,6 +873,7 @@
     <div class="cursor-dot"  id="cursorDot"></div>
     <div class="cursor-ring" id="cursorRing"></div>
 
+<div class="page-wrap">
     <!-- BG -->
     <div class="bg-glow bg-glow-1"></div>
     <div class="bg-glow bg-glow-2"></div>
@@ -1813,6 +1815,7 @@
             </div>
         </div>
     </footer>
+</div><!-- /page-wrap -->
 
     <script>
     /* ===== CUSTOM CURSOR (desktop/hover only) ===== */
@@ -1868,12 +1871,10 @@
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('open');
         mobileMenu.classList.toggle('open');
-        document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
     });
     document.querySelectorAll('.mob-link').forEach(l => l.addEventListener('click', () => {
         hamburger.classList.remove('open');
         mobileMenu.classList.remove('open');
-        document.body.style.overflow = '';
     }));
 
     /* ===== TYPEWRITER ===== */
